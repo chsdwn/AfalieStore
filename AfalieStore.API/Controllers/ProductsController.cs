@@ -17,13 +17,6 @@ namespace AfalieStore.API.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody]Product product)
-        {
-            var productToReturn = await new CreateProduct(_dbContext).Do(product);
-            return Ok(productToReturn);
-        }
-
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {

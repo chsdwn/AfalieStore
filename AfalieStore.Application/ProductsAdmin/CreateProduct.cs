@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using AfalieStore.Database;
 using AfalieStore.Domain.Models;
 
-namespace AfalieStore.Application.Products
+namespace AfalieStore.Application.ProductsAdmin
 {
     public class CreateProduct
     {
