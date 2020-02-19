@@ -1,3 +1,16 @@
-<p>
-  product-list works!
-</p>
+<div class="product-list" *ngIf="!loading">
+  <div class="product-list__products">
+    <span class="product-list__products--id">Id</span>
+    <span class="product-list__products--name">Name</span>
+    <span class="product-list__products--description">Description</span>
+    <span class="product-list__products--value">Value</span>
+    
+    <ng-container *ngFor="let product of products">
+      <span>{{ product.id }}</span>
+      <span>{{ product.name }}</span>
+      <span>{{ product.description }}</span>
+      <span>{{ product.value }}</span>
+    </ng-container>
+  </div>
+</div>
+<span *ngIf="loading">Please wait. Loading...</span>

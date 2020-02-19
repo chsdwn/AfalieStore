@@ -1,0 +1,13 @@
+.admin {
+  display: flex;
+
+  &__sidenav {
+    width: 20vw;
+    height: 100vh;
+  }
+
+  &__container {
+    width: 80vw;
+    height: 100vh;
+  }
+}

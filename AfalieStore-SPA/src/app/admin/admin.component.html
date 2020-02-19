@@ -1,4 +1,9 @@
-<ul>
-  <li><a routerLink="products">Products</a></li>
-</ul>
-<router-outlet></router-outlet>
+<div class="admin">
+  <div class="admin__sidenav">
+    <app-admin-sidenav></app-admin-sidenav>
+  </div>
+
+  <div class="admin__container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

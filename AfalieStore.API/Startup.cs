@@ -30,6 +30,15 @@ namespace AfalieStore.API
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["DefaultConnection"]));
 
             services.AddControllers();
+
+            services.AddCors(options => {
+                options.AddDefaultPolicy(builder => {
+                    builder.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +48,8 @@ namespace AfalieStore.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             // app.UseHttpsRedirection();
 
