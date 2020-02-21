@@ -2,6 +2,8 @@
   font-size: 2.5rem;
 
   &__products {
+    user-select: none;
+
     display: grid;
     grid-template-columns:
       [id-start] 5rem
@@ -35,6 +37,37 @@
       font-weight: 700;
 
       grid-column: value-start / value-end;
+    }
+
+    &--row {
+      padding: 1rem 0;
+      cursor: pointer;
+      grid-column: id-start / value-end;
+      position: relative;
+
+      display: grid;
+      grid-template-columns:
+        5rem
+        minmax(10rem, 15rem)
+        minmax(25rem, 30rem)
+        minmax(8rem, 10rem);
+
+      &:hover {
+        background-color: lightgrey;
+      }
+
+      &::before {
+        top: 0;
+        left: 0;
+        position: absolute;
+        border-bottom: 1px solid grey;
+        content: "";
+        width: 100%;
+      }
+
+      & span {
+        margin-left: 1rem;
+      }
     }
   }
 }

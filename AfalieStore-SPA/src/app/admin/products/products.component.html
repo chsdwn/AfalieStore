@@ -1,3 +1,9 @@
 <div class="products">
-  <router-outlet></router-outlet>
+  <div class="products__header">
+    <a routerLink="list" class="products__header--link" routerLinkActive="products__header--link-active">List</a>
+    <a routerLink="new" class="products__header--link">New</a>
+  </div>
+  <div class="products__content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
