@@ -1,7 +1,17 @@
 <div class="products">
   <div class="products__header">
-    <a routerLink="list" class="products__header--link" routerLinkActive="products__header--link-active">List</a>
-    <a routerLink="new" class="products__header--link">New</a>
+    <a
+      routerLink="/admin/products/list" 
+      class="products__header--link" 
+      routerLinkActive="products__header--link-active">
+      List
+    </a>
+    <a 
+      routerLink="/admin/products/new" 
+      class="products__header--link"  
+      routerLinkActive="products__header--link-active">
+      New
+    </a>
   </div>
   <div class="products__content">
     <router-outlet></router-outlet>

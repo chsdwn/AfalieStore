@@ -1,0 +1,58 @@
+.product-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__input,
+  &__value-input {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 2px solid black;
+    border-radius: 2px;
+    color: black;
+    font-size: 1.8rem;
+  }
+
+  &__value-input {
+    text-align: right;
+
+    &::placeholder {
+      text-align: left;
+    }
+
+    &::-webkit-inner-spin-button, 
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  &__create-btn {
+    padding: 5px;
+    background-color: white;
+    outline: none;
+    border: 2px solid green;
+    border-radius: 3px;
+    width: 10rem;
+    align-self: flex-end;
+    font-size: 2rem;
+    color: green;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      background-color: green;
+      color: white;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      border: 2px solid grey;
+      color: grey;
+
+      &:hover {
+        background-color: white;
+      }
+    }
+  }
+}

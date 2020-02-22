@@ -14,4 +14,8 @@ export class ProductAdminService {
   getProducts() {
     return this.http.get(`${this.url}/products`);
   }
+
+  createProduct(product: {name: string, description: string, value: number}) {
+    return this.http.post(`${this.url}/products`, product);
+  }
 }

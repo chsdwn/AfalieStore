@@ -1,0 +1,30 @@
+<ng-container *ngIf="!isCreating">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+  <input 
+    type="text" 
+    id="name" 
+    formControlName="name" 
+    class="product-form__input" 
+    placeholder="Product Name">
+  <input
+    type="text" 
+    id="description" 
+    formControlName="description" 
+    class="product-form__input" 
+    placeholder="Product Description">
+  <input 
+    id="value"
+    type="number" 
+    min="0"
+    step="1"
+    formControlName="value"
+    class="product-form__value-input"
+    placeholder="Product Price">
+
+  <button class="product-form__create-btn" type="submit" [disabled]="!productForm.valid">Create</button>
+</form>
+</ng-container>
+
+<ng-container *ngIf="isCreating">
+  <span>Product creating. Please wait!</span>
+</ng-container>
