@@ -1,5 +1,5 @@
 <ng-container *ngIf="!isCreating">
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form" *ngIf="productForm">
   <input 
     type="text" 
     id="name" 
@@ -21,7 +21,9 @@
     class="product-form__value-input"
     placeholder="Product Price">
 
-  <button class="product-form__create-btn" type="submit" [disabled]="!productForm.valid">Create</button>
+  <button class="product-form__create-btn" type="submit" [disabled]="!productForm.valid">
+    {{ id === null ? 'Create' : 'Update' }}
+  </button>
 </form>
 </ng-container>
 

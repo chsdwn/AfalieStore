@@ -9,7 +9,9 @@
       [id-start] 5rem
       [id-end name-start] minmax(10rem, 15rem)
       [name-end description-start] minmax(25rem, 30rem)
-      [description-end value-start] minmax(8rem, 10rem) [value-end];
+      [description-end value-start] minmax(8rem, 10rem)
+      [value-end edit-start] 6rem
+      [edit-end delete-start] 2rem [delete-end];
 
     &--id {
       text-align: center;
@@ -39,10 +41,18 @@
       grid-column: value-start / value-end;
     }
 
+    &--edit {
+      grid-column: edit-start / edit-end;
+    }
+
+    &--delete {
+      grid-column: delete-start / delete-end;
+    }
+
     &--row {
       padding: 1rem 0;
       cursor: pointer;
-      grid-column: id-start / value-end;
+      grid-column: id-start / delete-end;
       position: relative;
 
       display: grid;
@@ -50,7 +60,9 @@
         5rem
         minmax(10rem, 15rem)
         minmax(25rem, 30rem)
-        minmax(8rem, 10rem);
+        minmax(8rem, 10rem)
+        6rem
+        2rem;
 
       &:hover {
         background-color: lightgrey;
@@ -67,6 +79,35 @@
 
       & span {
         margin-left: 1rem;
+      }
+
+      &__value {
+        text-align: right;
+      }
+
+      &__edit {
+        text-align: center;
+        text-decoration: underline;
+        font-style: italic;
+        color: blue;
+        font-size: 2rem;
+        align-self: center;
+
+        &:hover {
+          font-weight: 700;
+        }
+      }
+
+      &__delete {
+        font-weight: 700;
+        color: red;
+        text-align: center;
+        margin-left: 0 !important;
+        margin-right: 5px;
+
+        &:hover {
+          color: #ff8080;
+        }
       }
     }
   }

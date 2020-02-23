@@ -4,12 +4,16 @@
     <span class="product-list__products--name">Name</span>
     <span class="product-list__products--description">Description</span>
     <span class="product-list__products--value">Value</span>
+    <span class="product-list__products--edit">&nbsp;</span>
+    <span class="product-list__products--delete">&nbsp;</span>
     
-    <div *ngFor="let product of products" class="product-list__products--row">
+    <div *ngFor="let product of products; let i = index" class="product-list__products--row">
       <span>{{ product.id }}</span>
       <span>{{ product.name }}</span>
       <span>{{ product.description }}</span>
-      <span>{{ product.value }}</span>
+      <span class="product-list__products--row__value">{{ product.value }}</span>
+      <a [routerLink]="['/admin/products', product.id]" class="product-list__products--row__edit">Edit</a>
+      <span class="product-list__products--row__delete" (click)="onDelete(product.id, i)">X</span>
     </div>
   </div>
 </div>

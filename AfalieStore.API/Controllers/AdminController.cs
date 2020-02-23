@@ -62,7 +62,7 @@ namespace AfalieStore.API.Controllers
         {
             var result = await new DeleteProduct(_dbContext).Do(id);
             if(result)
-                return Ok("The product successfully deleted.");
+                return Ok();
             
             return BadRequest("An error occured while deleting the product.");
         }

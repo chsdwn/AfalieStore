@@ -8,6 +8,7 @@ import { ProductAdminService } from './../../../services/product-admin.service';
 })
 export class ProductListComponent implements OnInit {
   loading = false;
+  deleting = false;
   products;
 
   constructor(private productAdminService: ProductAdminService) { }
@@ -18,6 +19,16 @@ export class ProductListComponent implements OnInit {
       this.products = res;
       this.loading = false;
     });
+  }
+
+  onDelete(id: number, i: number) {
+    if (id) {
+      this.deleting = true;
+      this.productAdminService.deleteProduct(id).subscribe(() => {
+        this.products.splice(i, 1);
+        this.deleting = false;
+      });
+    }
   }
 
 }
