@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using AfalieStore.Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +20,12 @@ namespace AfalieStore.Database
                 .HasKey(x => new { x.ProductId, x.OrderId });
         }
 
-        public DbSet<Product> Products { get; set; }
+    public Task FirstOrDefaultAsync()
+    {
+      throw new NotImplementedException();
+    }
+
+    public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
         public DbSet<Stock> Stock { get; set; }

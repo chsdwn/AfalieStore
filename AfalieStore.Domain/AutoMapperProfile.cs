@@ -14,6 +14,7 @@ namespace AfalieStore.Domain
             cfg.CreateMap<Product, ProductForDetailedAdmin>();
             cfg.CreateMap<Product, ProductForList>();
             cfg.CreateMap<Product, ProductForListAdmin>();
+            cfg.CreateMap<Stock, StockForDetailedAdmin>();
 
 
             /*
@@ -21,6 +22,8 @@ namespace AfalieStore.Domain
             */
             cfg.CreateMap<ProductForCreationAdmin, Product>();
             cfg.CreateMap<ProductForUpdateAdmin, Product>();
+            cfg.CreateMap<StockForCreationAdmin, Stock>();
+            cfg.CreateMap<StockForUpdateAdmin, Stock>();
         });
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AfalieStore.Application.ProductsAdmin;
+using AfalieStore.Application.StockAdmin;
 using AfalieStore.Database;
 using AfalieStore.Domain;
 using AfalieStore.Domain.DTOs;
@@ -65,6 +66,43 @@ namespace AfalieStore.API.Controllers
                 return Ok();
             
             return BadRequest("An error occured while deleting the product.");
+        }
+
+        [HttpGet("stocks/{productId}")]
+        public async Task<IActionResult> GetStocks(int productId)
+        {
+            var stocks = await new GetStocks(_dbContext).Do(productId);
+            var stockList = _mapper.Map<IEnumerable<StockForDetailedAdmin>>(stocks);
+            return Ok(stockList);
+        }
+
+        [HttpPost("stocks")]
+        public async Task<IActionResult> CreateStock([FromBody]StockForCreationAdmin stockForCreationAdminDto)
+        {
+            var stock = _mapper.Map<Stock>(stockForCreationAdminDto);
+            var createdStock = await new CreateStock(_dbContext).Do(stock);
+            var stockToReturn = _mapper.Map<StockForDetailedAdmin>(createdStock);
+            return Ok(stockToReturn);
+        }
+
+        [HttpPut("stocks/{productId}")]
+        public async Task<IActionResult> UpdateStocks([FromBody]IEnumerable<StockForUpdateAdmin> stocks, int productId)
+        {
+            var stockList = _mapper.Map<IEnumerable<Stock>>(stocks);
+            var updatedStocks = await new UpdateStocks(_dbContext).Do(stockList, productId);
+            var stocksToReturn = _mapper.Map<IEnumerable<StockForDetailedAdmin>>(updatedStocks);
+            return Ok(stocksToReturn);
+        }
+
+        [HttpDelete("stocks/{id}")]
+        public async Task<IActionResult> DeleteStock(int id)
+        {
+            var deleteResult = await new DeleteStock(_dbContext).Do(id);
+            
+            if(deleteResult)
+                return Ok();
+
+            return BadRequest();
         }
     }
 }
