@@ -30,5 +30,13 @@ namespace AfalieStore.API.Controllers
             var productList = _mapper.Map<IEnumerable<ProductForList>>(products);
             return Ok(productList);
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var product = await new GetProduct(_dbContext).Do(id);
+            var productToReturn = _mapper.Map<ProductForDetailed>(product);
+            return Ok(productToReturn);
+        }
     }
 }

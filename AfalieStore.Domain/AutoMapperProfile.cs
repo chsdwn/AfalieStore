@@ -11,10 +11,16 @@ namespace AfalieStore.Domain
             /*
             **  Domain to API
             */
+            cfg.CreateMap<Product, ProductForDetailed>();
             cfg.CreateMap<Product, ProductForDetailedAdmin>();
             cfg.CreateMap<Product, ProductForList>();
             cfg.CreateMap<Product, ProductForListAdmin>();
             cfg.CreateMap<Stock, StockForDetailedAdmin>();
+            cfg.CreateMap<Stock, StockForList>()
+                .ForMember(
+                    dest => dest.InStock,
+                    opt => opt.MapFrom(src => src.Qty > 0 ? true : false)
+                );
 
 
             /*
