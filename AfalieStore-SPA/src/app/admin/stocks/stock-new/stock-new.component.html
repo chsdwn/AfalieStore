@@ -1,0 +1,23 @@
+<form [formGroup]="stockForm" (ngSubmit)="onSubmit()" class="stock-form" *ngIf="stockForm">
+  <input
+    id="description" 
+    type="text" 
+    formControlName="description"
+    class="stock-form__input"
+    placeholder="Stock Description">
+  <input
+    id="quantity" 
+    type="number" 
+    min="0"
+    step="10"
+    formControlName="quantity"
+    class="stock-form__input"
+    placeholder="Stock Quantity">
+  <button 
+    class="stock-form__btn" 
+    type="submit" 
+    *ngIf="stockForm.valid">
+    <span class="stock-form__btn--sign-horizontal"></span>
+    <span class="stock-form__btn--sign-vertical"></span>
+  </button>
+</form>

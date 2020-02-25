@@ -1,0 +1,55 @@
+.stock-form {
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    padding: 1rem;
+    color: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 1rem 0;
+    font-size: 1.8rem;
+  }
+
+  &__btn {
+    border: 3px solid green;
+    border-radius: 3px;
+    background-color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    width: 4rem;
+    height: 4rem;
+    position: relative;
+    transition: all .15s;
+    align-self: flex-end;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--sign-horizontal {
+      position: absolute;
+      width: .5rem;
+      height: 2.5rem;
+      background-color: green;
+      border-radius: 3px;
+    }
+    
+    &--sign-vertical {
+      position: absolute;
+      width: 2.5rem;
+      height: .5rem;
+      background-color: green;
+      border-radius: 3px;
+    }
+
+    &:hover {
+      background-color: green;
+    }
+
+    &:hover &--sign-horizontal,
+    &:hover &--sign-vertical {
+      background-color: white;
+    }
+  }
+}

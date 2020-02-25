@@ -1,0 +1,65 @@
+.stocks-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &__stock {
+    margin-bottom: 1rem;
+
+    display: flex;
+    align-items: center;
+
+    &--input {
+      height: 4rem;
+      padding: 1rem;
+      border: 2px solid grey;
+      border-radius: 3px;
+      margin-right: 1rem;
+      font-size: 1.8rem;
+
+      &-quantity {
+        width: 8rem;
+        text-align: center;
+      }
+    }
+
+    &--delete-btn {
+      width: 4rem;
+      height: 4rem;
+      font-size: 2.5rem;
+      font-weight: 700;
+      border: 3px solid red;
+      border-radius: 3px;
+      background-color: white;
+      color: red;
+      cursor: pointer;
+
+      transition: all .1s;
+
+      &:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+  }
+
+  &__update-btn {
+    font-size: 2rem;
+    font-weight: 700;
+    width: 13rem;
+    height: 4rem;
+    color: green;
+    background-color: white;
+    border: 3px solid green;
+    border-radius: 3px;
+    cursor: pointer;
+    align-self: flex-end;
+
+    transition: all .1s;
+
+    &:hover {
+      color: white;
+      background-color: green;
+    }
+  }
+}

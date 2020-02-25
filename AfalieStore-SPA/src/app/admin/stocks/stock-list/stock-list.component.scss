@@ -1,0 +1,30 @@
+.stock-list {
+  display: flex;
+  flex-direction: column;
+
+  &__product {
+    position: relative;
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 2rem;
+
+    &:hover {
+      background-color: lightgrey;
+    }
+  }
+
+  &__product-active {
+    transform: translateX(5px);
+    transition: all .15s;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: -5px;
+      content: "";
+      height: 100%;
+      width: 5px;
+      background-color: grey;
+    }
+  }
+}

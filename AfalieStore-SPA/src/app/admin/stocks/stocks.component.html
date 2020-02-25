@@ -1,0 +1,27 @@
+<div class="stocks">
+  <div class="stocks--list">
+    <app-stock-list ($selectedProductId)="onProductSelect($event)"></app-stock-list>
+  </div>
+
+  <div class="stocks--router">
+    <nav class="stocks--router__header" *ngIf="selectedProductId">
+      <a 
+        routerLink="new" 
+        routerLinkActive="stocks--router__header-link-active"
+        class="stocks--router__header-link">
+        New
+      </a>
+      <a 
+        routerLink="edit"
+        routerLinkActive="stocks--router__header-link-active"
+        class="stocks--router__header-link">
+        Update/Delete
+      </a>
+    </nav>
+    
+    <div class="stocks--router__content">
+      <router-outlet></router-outlet>
+      <!-- <span *ngIf="!selectedProductId">Please select a product first.</span> -->
+    </div>
+  </div>
+</div>

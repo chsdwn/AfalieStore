@@ -1,0 +1,10 @@
+<div class="stock-list">
+  <ng-container *ngFor="let product of products">
+    <span 
+      class="stock-list__product" 
+      [ngClass]="{'stock-list__product-active': selectedProductId === product.id}"
+      (click)="onProductSelect(product.id)">
+      {{ product.name }}
+    </span>
+  </ng-container>
+</div>

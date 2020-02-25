@@ -1,0 +1,36 @@
+<form
+  [formGroup]="stocksForm" 
+  (ngSubmit)="onSubmit()" 
+  *ngIf="stocksForm && stocks.length > 0 && !isUpdating" 
+  class="stocks-form">
+  <div *ngFor="let stock of stocks; let i = index" class="stocks-form__stock">
+    <input
+        [id]="i + 'description'" 
+        type="text" 
+        [formControlName]="i + 'description'" 
+        class="stocks-form__stock--input"
+        placeholder="Stock Description">
+      <input
+        [id]="i + 'quantity'" 
+        type="number" 
+        min="0"
+        step="10"
+        [formControlName]="i + 'quantity'" 
+        class="stocks-form__stock--input stocks-form__stock--input-quantity"
+        placeholder="Stock Quantity">
+      <button 
+        type="button" 
+        class="stocks-form__stock--delete-btn" 
+        (click)="onStockDelete(stock.id, i)">
+        X
+      </button>
+  </div>
+  <button
+    type="submit" 
+    class="stocks-form__update-btn" 
+    *ngIf="stocksForm.valid && stocksForm.touched">
+    Update
+  </button>
+</form>
+<ng-container *ngIf="stocks.length <= 0">No stocks found for this product.</ng-container>
+<span *ngIf="isUpdating">Please wait. Stocks updating.</span>
