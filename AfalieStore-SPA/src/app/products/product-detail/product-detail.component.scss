@@ -1,0 +1,35 @@
+.product-detail {
+  padding: 1rem;
+
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    font-size: 2.2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  &__price {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  &__stock {
+    font-size: 2rem;
+
+    &--select {
+      border: 1px solid grey;
+      border-radius: 2px;
+      padding: 5px;
+      font-size: 1.8rem;
+    }
+  }
+}

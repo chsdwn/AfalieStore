@@ -1,0 +1,9 @@
+<div class="product-list">
+  <div class="product-list__product" *ngFor="let product of products" (click)="onProductClick(product.id)">
+    <h2 class="product-list__product--name">
+      {{ product.name }}
+    </h2>
+
+    <span class="product-list__product--price">${{ product.value }}</span>
+  </div>
+</div>

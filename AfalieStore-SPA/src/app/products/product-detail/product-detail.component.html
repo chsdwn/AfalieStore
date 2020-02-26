@@ -1,0 +1,21 @@
+<div class="product-detail" *ngIf="product">
+  <h1 class="product-detail__name">
+    {{ product.name }}
+  </h1>
+
+  <h2 class="product-detail__description">
+    {{ product.description }}
+  </h2>
+
+  <span class="product-detail__price">
+    ${{ product.value }}
+  </span>
+
+  <div *ngIf="product.stock.length > 0" class="product-detail__stock">
+    <select name="stock" id="stock" class="product-detail__stock--select">
+      <option *ngFor="let stock of product.stock" [value]="stock.id" [disabled]="!stock.inStock">
+        {{ stock.description }}
+      </option>
+    </select>
+  </div>
+</div>
