@@ -3,13 +3,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StockAdminService } from './../../../services/stock-admin.service';
 import { ProductAdminService } from './../../../services/product-admin.service';
 
+import { ProductForListAdmin } from './../../../models/ProductForListAdmin';
+
 @Component({
   selector: 'app-stock-list',
   templateUrl: './stock-list.component.html',
   styleUrls: ['./stock-list.component.scss']
 })
 export class StockListComponent implements OnInit {
-  products: {id: number, name: string}[] = [];
+  products: ProductForListAdmin[] = [];
   selectedProductId: number;
   @Output() $selectedProductId = new EventEmitter<number>();
 
@@ -21,7 +23,7 @@ export class StockListComponent implements OnInit {
   ngOnInit() {
     this.productAdminService.getProducts().subscribe(products => {
       for (let i = 0; i < products.length; i++) {
-        this.products.push({id: products[i].id, name: products[i].name});
+        this.products.push(products[i]);
       }
     });
   }
@@ -30,7 +32,6 @@ export class StockListComponent implements OnInit {
     this.selectedProductId = productId;
     this.stockAdminService.productId = productId;
     this.stockAdminService.setProductIdChanged(true);
-    console.log('list', this.stockAdminService.productId);
     this.$selectedProductId.next(this.selectedProductId);
   }
 

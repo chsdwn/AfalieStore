@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 
+import { ProductForDetailed } from './../models/ProductForDetailed';
+import { ProductForList } from './../models/ProductForList';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,10 +14,10 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProduct(id: number) {
-    return this.http.get(`${this.url}/${id}`);
+    return this.http.get<ProductForDetailed>(`${this.url}/${id}`);
   }
 
   getProducts() {
-    return this.http.get(`${this.url}`);
+    return this.http.get<ProductForList[]>(`${this.url}`);
   }
 }

@@ -2,6 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment.prod';
 
+import { ProductForCreationAdmin } from './../models/ProductForCreationAdmin';
+import { ProductForDetailedAdmin } from './../models/ProductForDetailedAdmin';
+import { ProductForListAdmin } from './../models/ProductForListAdmin';
+import { ProductForUpdateAdmin } from './../models/ProductForUpdateAdmin';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,14 +17,14 @@ export class ProductAdminService {
   }
 
   getProduct(id: number) {
-    return this.http.get<{id: number, name: string, description: string, value: number}>(`${this.url}/products/${id}`);
+    return this.http.get<ProductForDetailedAdmin>(`${this.url}/products/${id}`);
   }
 
   getProducts() {
-    return this.http.get(`${this.url}/products`);
+    return this.http.get<ProductForListAdmin[]>(`${this.url}/products`);
   }
 
-  createProduct(product: {name: string, description: string, value: number}) {
+  createProduct(product: ProductForCreationAdmin) {
     return this.http.post(`${this.url}/products`, product);
   }
 
@@ -27,7 +32,7 @@ export class ProductAdminService {
     return this.http.delete(`${this.url}/products/${id}`);
   }
 
-  updateProduct(id: number, product: {name: string, description: string, value: number}) {
+  updateProduct(id: number, product: ProductForUpdateAdmin) {
     return this.http.put(`${this.url}/products/${id}`, product);
   }
 }

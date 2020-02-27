@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { StockAdminService } from './../../../services/stock-admin.service';
 
+import { StockForDetailedAdmin } from './../../../models/StockForDetailedAdmin';
+
 @Component({
   selector: 'app-stock-edit',
   templateUrl: './stock-edit.component.html',
@@ -11,8 +13,7 @@ import { StockAdminService } from './../../../services/stock-admin.service';
 export class StockEditComponent implements OnInit {
   stocksForm: FormGroup;
   productId: number;
-  stocks: {id: number, description: string, qty: number}[] = [];
-  test: any = {};
+  stocks: StockForDetailedAdmin[];
   isUpdating = false;
 
   constructor(private stockAdminService: StockAdminService) { }
@@ -40,14 +41,14 @@ export class StockEditComponent implements OnInit {
   }
 
   initStocks() {
-    this.stockAdminService.getStocks(this.productId).subscribe(res => {
+    this.stockAdminService.getStocks(this.productId).subscribe(stocks => {
       this.stocks = [];
 
-      for (let i = 0; i < res.length; i++) {
+      for (let i = 0; i < stocks.length; i++) {
         this.stocks.push({
-          id: res[i].id,
-          description: res[i].description,
-          qty: res[i].qty
+          id: stocks[i].id,
+          description: stocks[i].description,
+          qty: stocks[i].qty
         });
       }
       this.initForm();

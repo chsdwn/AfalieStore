@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { Title, Meta } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
+
+import { ProductService } from '../../services/product.service';
+
+import { ProductForList } from './../../models/ProductForList';
 
 @Component({
   selector: 'app-product-list',
@@ -9,12 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products: {
-    id: number,
-    name: string,
-    description: string,
-    value: number
-  }[];
+  products: ProductForList[];
 
   constructor(
     private productService: ProductService,
@@ -33,9 +31,9 @@ export class ProductListComponent implements OnInit {
     ]);
 
     this.products = [];
-    this.productService.getProducts().subscribe(res => {
-      for (let i = 0; i < res.length; i++) {
-        this.products.push(res[i]);
+    this.productService.getProducts().subscribe(products => {
+      for (let i = 0; i < products.length; i++) {
+        this.products.push(products[i]);
       }
     });
   }

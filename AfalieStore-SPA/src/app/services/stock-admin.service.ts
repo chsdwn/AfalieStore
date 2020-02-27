@@ -1,3 +1,6 @@
+import { StockForUpdateAdmin } from './../models/StockForUpdateAdmin';
+import { StockForCreationAdmin } from './../models/StockForCreationAdmin';
+import { StockForDetailedAdmin } from './../models/StockForDetailedAdmin';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -23,14 +26,14 @@ export class StockAdminService {
   }
 
   getStocks(productId: number) {
-    return this.http.get(`${this.url}/${productId}`);
+    return this.http.get<StockForDetailedAdmin[]>(`${this.url}/${productId}`);
   }
 
-  createStock(stock: {productId: number, description: string, qty: number}) {
+  createStock(stock: StockForCreationAdmin) {
     return this.http.post(`${this.url}`, stock);
   }
 
-  updateStocks(stocks: {id: number, description: string, qty: number}[], productId: number) {
+  updateStocks(stocks: StockForUpdateAdmin[], productId: number) {
     return this.http.put(`${this.url}/${productId}`, stocks);
   }
 

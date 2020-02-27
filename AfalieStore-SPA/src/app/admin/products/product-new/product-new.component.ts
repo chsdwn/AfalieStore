@@ -1,3 +1,4 @@
+import { ProductForDetailedAdmin } from './../../../models/ProductForDetailedAdmin';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -14,7 +15,7 @@ export class ProductNewComponent implements OnInit {
   id: number = null;
   isCreating = false;
   createdProduct: object;
-  product: {id: number, name: string, description: string, value: number};
+  product: ProductForDetailedAdmin;
 
   constructor(
     private productAdminService: ProductAdminService,
@@ -26,14 +27,8 @@ export class ProductNewComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       if (params.id) {
         this.id = +params.id;
-        this.productAdminService.getProduct(this.id).subscribe(res => {
-          this.product = {
-            id: res.id,
-            name: res.name,
-            description: res.description,
-            value: res.value
-          };
-          console.log(this.product);
+        this.productAdminService.getProduct(this.id).subscribe(product => {
+          this.product = product;
           this.initForm();
         });
       } else {
@@ -66,20 +61,19 @@ export class ProductNewComponent implements OnInit {
         value: +this.productForm.value.value
       };
 
+      this.isCreating = true;
       if (this.id === null) {
-        this.isCreating = true;
         this.productAdminService.createProduct(product).subscribe(res => {
           this.createdProduct = res;
           this.isCreating = false;
           this.router.navigate(['/admin/products/list']);
         });
       } else {
-        this.isCreating = true;
         this.productAdminService.updateProduct(this.id, product).subscribe(res => {
           this.createdProduct = res;
           this.isCreating = false;
           this.router.navigate(['/admin/products/list']);
-        })
+        });
       }
     }
   }

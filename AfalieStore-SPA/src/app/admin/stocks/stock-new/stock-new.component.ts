@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { StockAdminService } from './../../../services/stock-admin.service';
 
+import { StockForCreationAdmin } from './../../../models/StockForCreationAdmin';
+
 @Component({
   selector: 'app-stock-new',
   templateUrl: './stock-new.component.html',
@@ -34,7 +36,7 @@ export class StockNewComponent implements OnInit {
 
   onSubmit() {
     if (this.stockForm.valid && this.productId) {
-      const stock = {
+      const stock: StockForCreationAdmin = {
         productId: this.productId,
         description: this.stockForm.value.description,
         qty: +this.stockForm.value.quantity

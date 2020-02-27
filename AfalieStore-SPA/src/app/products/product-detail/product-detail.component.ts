@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
-import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
+
+import { ProductService } from '../../services/product.service';
+
+import { ProductForDetailed } from './../../models/ProductForDetailed';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,16 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductDetailComponent implements OnInit {
   id: number;
-  product: {
-    name: string,
-    description: string,
-    value: number,
-    stock: {
-      id: number,
-      description: string,
-      inStock: boolean
-    }[]
-  };
+  product: ProductForDetailed;
 
   constructor(
     private productService: ProductService,
@@ -33,18 +27,12 @@ export class ProductDetailComponent implements OnInit {
 
     this.id = +params[params.length - 1];
 
-    this.productService.getProduct(this.id).subscribe(res => {
-      const stock = [];
-
-      for (let i = 0; i < res.stock.length; i++) {
-        stock.push(res.stock[i]);
-      }
-
+    this.productService.getProduct(this.id).subscribe(product => {
       this.product = {
-        name: res.name,
-        description: res.description,
-        value: res.value,
-        stock
+        name: product.name,
+        description: product.description,
+        value: product.value,
+        stock: product.stock
       };
     });
   }
