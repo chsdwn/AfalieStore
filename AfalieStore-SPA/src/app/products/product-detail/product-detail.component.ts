@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
@@ -14,9 +15,11 @@ import { ProductForDetailed } from './../../models/ProductForDetailed';
 export class ProductDetailComponent implements OnInit {
   id: number;
   product: ProductForDetailed;
+  cartItem: { stockId: number, qty: number };
 
   constructor(
     private productService: ProductService,
+    private cartService: CartService,
     private title: Title,
     private meta: Meta,
     private route: ActivatedRoute
@@ -28,13 +31,19 @@ export class ProductDetailComponent implements OnInit {
     this.id = +params[params.length - 1];
 
     this.productService.getProduct(this.id).subscribe(product => {
-      this.product = {
-        name: product.name,
-        description: product.description,
-        value: product.value,
-        stock: product.stock
-      };
+      this.product = product;
+      if (this.product.stock.length > 0) {
+        this.cartItem = { stockId: this.product.stock[0].id, qty: 0 };
+      }
     });
+  }
+
+  onAddToCart() {
+    this.cartService.addToCart(this.cartItem);
+  }
+
+  onStockChange(stockId: number) {
+    this.cartItem.stockId = stockId;
   }
 
 }

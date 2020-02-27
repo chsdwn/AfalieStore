@@ -13,9 +13,20 @@
 
   <div *ngIf="product.stock.length > 0" class="product-detail__stock">
     <select name="stock" id="stock" class="product-detail__stock--select">
-      <option *ngFor="let stock of product.stock" [value]="stock.id" [disabled]="!stock.inStock">
+      <option
+        *ngFor="let stock of product.stock"
+        [value]="stock.id" 
+        [disabled]="!stock.inStock" 
+        (click)="onStockChange(stock.id)">
         {{ stock.description }}
       </option>
     </select>
+  </div>
+
+  <div class="product-detail__add-to-cart">
+    <button class="product-detail__add-to-cart--btn" [disabled]="cartItem.qty <= 0" (click)="onAddToCart()">
+      Add to Cart
+    </button>
+    <input type="number" placeholder="Quantity" min="0" step="10" name="qty" [(ngModel)]="cartItem.qty">
   </div>
 </div>

@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,6 +20,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
    imports: [
       CommonModule,
       BrowserModule,
+      FormsModule,
       HttpClientModule,
       AppRoutingModule
    ],
