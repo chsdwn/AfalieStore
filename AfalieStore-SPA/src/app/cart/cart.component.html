@@ -1,0 +1,8 @@
+<ng-container *ngIf="!isLoading && cartProducts">
+  <p *ngFor="let cartProduct of cartProducts">
+    {{ cartProduct.name }} - {{ cartProduct.qty }} - ${{ cartProduct.value * cartProduct.qty }}
+  </p>
+</ng-container>
+
+<span *ngIf="isLoading">Loading! Please wait.</span>
+<span *ngIf="!isLoading && !cartProducts">No product found in your cart.</span>
