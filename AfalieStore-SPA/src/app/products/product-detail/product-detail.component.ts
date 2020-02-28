@@ -1,10 +1,11 @@
-import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
+import { CartService } from './../../services/cart.service';
 import { ProductService } from '../../services/product.service';
 
+import { CartItem } from './../../models/CartItem';
 import { ProductForDetailed } from './../../models/ProductForDetailed';
 
 @Component({
@@ -15,7 +16,7 @@ import { ProductForDetailed } from './../../models/ProductForDetailed';
 export class ProductDetailComponent implements OnInit {
   id: number;
   product: ProductForDetailed;
-  cartItem: { stockId: number, qty: number };
+  cartItem: CartItem;
 
   constructor(
     private productService: ProductService,
