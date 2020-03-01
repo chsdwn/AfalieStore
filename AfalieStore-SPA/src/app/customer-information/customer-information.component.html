@@ -1,0 +1,11 @@
+<form [formGroup]="customerForm" (ngSubmit)="onSubmit()" *ngIf="customerForm">
+  <input type="text" formControlName="firstName" placeholder="First Name">
+  <input type="text" formControlName="lastName" placeholder="Last Name">
+  <input type="email" formControlName="email" placeholder="Email">
+  <input type="text" formControlName="phone" placeholder="Phone">
+  <input type="text" formControlName="address1" placeholder="Address 1">
+  <input type="text" formControlName="address2" placeholder="Address 2">
+  <input type="text" formControlName="city" placeholder="City">
+  <input type="text" formControlName="postCode" placeholder="Post Code">
+  <button type="submit">Save</button>
+</form>
